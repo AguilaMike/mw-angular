@@ -25,7 +25,7 @@
 - rename MwModules
 - loader at top of the page
 - links in readme for core
-- flicker translations
+- fix pull requests builds
 
 - app shell
 - default lang from browser
