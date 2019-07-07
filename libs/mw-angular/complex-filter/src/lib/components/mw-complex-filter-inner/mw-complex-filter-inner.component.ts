@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MwComplexFilterPortalModel } from '../../entities/mw-complex-filter-portal-model';
 
 @Component({
@@ -12,21 +11,7 @@ export class MwComplexFilterInnerComponent {
   @Input() defaultPortalModels: MwComplexFilterPortalModel[] = [];
   @Input() dynamicPortalModels: MwComplexFilterPortalModel[] = [];
 
-  @Output() submitValidEvent = new EventEmitter<any>();
-
-  form: FormGroup;
-
-  constructor(private formBuilder: FormBuilder) {
-    this.initForm();
-  }
-
-  onSubmit(): void {
-    if (this.form.valid) {
-      this.submitValidEvent.emit(this.form.value);
-    }
-  }
-
-  private initForm(): void {
-    this.form = this.formBuilder.group({});
+  trackByFn(_: number, item: MwComplexFilterPortalModel): string | number {
+    return item.id;
   }
 }

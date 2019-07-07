@@ -1,13 +1,11 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="mw-complex-filter-line">
-    <div class="mw-complex-filter-line__item" *ngFor="let defaultPortalModel of defaultPortalModels">
-      <ng-container [cdkPortalOutlet]="defaultPortalModel.portal"></ng-container>
-    </div>
+<div class="mw-complex-filter-line">
+  <div class="mw-complex-filter-line__item" *ngFor="let defaultPortalModel of defaultPortalModels; trackBy: trackByFn">
+    <ng-container [cdkPortalOutlet]="defaultPortalModel.portal"></ng-container>
   </div>
+</div>
 
-  <div class="mw-complex-filter-line">
-    <div class="mw-complex-filter-line__item" *ngFor="let dynamicPortalModel of dynamicPortalModels">
-      <ng-container [cdkPortalOutlet]="dynamicPortalModel.portal"></ng-container>
-    </div>
+<div class="mw-complex-filter-line">
+  <div class="mw-complex-filter-line__item" *ngFor="let dynamicPortalModel of dynamicPortalModels; trackBy: trackByFn">
+    <ng-container [cdkPortalOutlet]="dynamicPortalModel.portal"></ng-container>
   </div>
-</form>
+</div>

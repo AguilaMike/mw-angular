@@ -40,6 +40,7 @@ export class MwComplexFilterComponent {
 
   private buildPortalModel(componentModel: MwComplexFilterComponentModel): MwComplexFilterPortalModel {
     return {
+      id: componentModel.id,
       portal: this.mwComplexFilterPortalCreationService.createPortal(componentModel.component, componentModel.data),
     };
   }
