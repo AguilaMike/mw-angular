@@ -42,7 +42,7 @@ export class ComplexFilterPageComponent {
     virtualFilters: [
       {
         id: 'virtual-sixth',
-        source: timer(0, 10000),
+        control: timer(0, 10000),
       },
     ],
   };
