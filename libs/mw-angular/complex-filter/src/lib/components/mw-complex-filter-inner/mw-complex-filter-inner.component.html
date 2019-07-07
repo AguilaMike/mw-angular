@@ -1,0 +1,9 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div *ngFor="let defaultPortalModel of defaultPortalModels">
+    <ng-container [cdkPortalOutlet]="defaultPortalModel.portal"></ng-container>
+  </div>
+
+  <div *ngFor="let dynamicPortalModel of dynamicPortalModels">
+    <ng-container [cdkPortalOutlet]="dynamicPortalModel.portal"></ng-container>
+  </div>
+</form>
