@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
-import { MwComplexFilterComponentDataModel } from '../../../../../entities/mw-complex-filter-component-data-model';
 import { MW_COMPLEX_FILTER_COMPONENT_DATA } from '../../../../../tokens/mw-complex-filter-component-data.token';
+import { MwComplexFilterElementTextDataModel } from '../../entities/mw-complex-filter-element-text-data-model';
 
 @Component({
   selector: 'mw-material-complex-filter-element-text',
@@ -11,5 +11,5 @@ import { MW_COMPLEX_FILTER_COMPONENT_DATA } from '../../../../../tokens/mw-compl
 export class MwMaterialComplexFilterElementTextComponent {
   isOpened = false;
 
-  constructor(@Inject(MW_COMPLEX_FILTER_COMPONENT_DATA) public data: MwComplexFilterComponentDataModel) {}
+  constructor(@Inject(MW_COMPLEX_FILTER_COMPONENT_DATA) public data: MwComplexFilterElementTextDataModel) {}
 }
