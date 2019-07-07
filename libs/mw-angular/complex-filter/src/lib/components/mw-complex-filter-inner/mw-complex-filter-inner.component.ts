@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MwComplexFilterPortalModel } from '../../entities/mw-complex-filter-portal.model';
+import { MwComplexFilterPortalModel } from '../../entities/mw-complex-filter-portal-model';
 
 @Component({
   selector: 'mw-complex-filter-inner',
