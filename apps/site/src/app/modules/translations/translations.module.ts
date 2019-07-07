@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { MwPlatformService } from '../../../../../../libs/mw-angular/core/src/lib/services/mw-platform.service';
+import { MwPlatformService } from '@mw-angular/core';
 import { TranslateServerLoader } from './loaders/translate-server-loader';
 import { CurrentLanguageService } from './services/current-language.service';
 

@@ -7,6 +7,11 @@ const routes: Routes = [
     path: '',
     component: DocsPageContainerComponent,
   },
+  {
+    path: 'complex-filter',
+    loadChildren: () =>
+      import('./pages/complex-filter-page/complex-filter-page.module').then((m) => m.ComplexFilterPageModule),
+  },
 ];
 
 @NgModule({

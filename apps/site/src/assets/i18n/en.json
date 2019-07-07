@@ -5,6 +5,9 @@
     "GitHubRepository": "GitHub Repository",
     "ToggleSidenav": "Toggle Sidenav"
   },
+  "ComplexFilterPageContainerComponent": {
+    "Title": "Complex Filter"
+  },
   "DocsPageContainerComponent": {
     "Title": "Documentation"
   },
