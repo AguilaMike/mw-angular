@@ -36,11 +36,11 @@ export class MwComplexFilterComponent {
   defaultPortalModelsSubject = new BehaviorSubject<MwComplexFilterPortalModel[]>([]);
   dynamicPortalModelsSubject = new BehaviorSubject<MwComplexFilterPortalModel[]>([]);
 
-  constructor(private complexFilterPortalCreationService: MwComplexFilterPortalCreationService) {}
+  constructor(private mwComplexFilterPortalCreationService: MwComplexFilterPortalCreationService) {}
 
   private buildPortalModel(componentModel: MwComplexFilterComponentModel): MwComplexFilterPortalModel {
     return {
-      portal: this.complexFilterPortalCreationService.createPortal(componentModel.component, componentModel.data),
+      portal: this.mwComplexFilterPortalCreationService.createPortal(componentModel.component, componentModel.data),
     };
   }
 }

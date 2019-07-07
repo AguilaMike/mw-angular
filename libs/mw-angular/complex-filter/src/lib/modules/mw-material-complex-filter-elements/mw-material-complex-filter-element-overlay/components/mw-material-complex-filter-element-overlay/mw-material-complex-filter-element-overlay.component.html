@@ -1,0 +1,12 @@
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="overlayOrigin"
+  [cdkConnectedOverlayOpen]="isOpened"
+  [cdkConnectedOverlayHasBackdrop]="true"
+  [cdkConnectedOverlayBackdropClass]="'cdk-overlay-transparent-backdrop'"
+  [cdkConnectedOverlayPanelClass]="['mat-elevation-z2']"
+  (backdropClick)="closeEvent.emit()"
+  (detach)="closeEvent.emit()"
+>
+  <ng-content></ng-content>
+</ng-template>

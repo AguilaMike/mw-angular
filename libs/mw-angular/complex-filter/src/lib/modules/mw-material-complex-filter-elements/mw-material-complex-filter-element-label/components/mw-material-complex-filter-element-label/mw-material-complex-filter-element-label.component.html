@@ -1,0 +1,6 @@
+<div>
+  <button type="button" mat-stroked-button [color]="isOpened ? 'accent' : 'primary'" (click)="openEvent.emit()">
+    <ng-content></ng-content>
+    <mat-icon [@openClose]="isOpened ? 'opened' : 'closed'">expand_more</mat-icon>
+  </button>
+</div>

@@ -2,10 +2,10 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'mw-complex-filter-element-label',
+  selector: 'mw-material-complex-filter-element-label',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './material-complex-filter-element-label.component.html',
-  styleUrls: ['./material-complex-filter-element-label.component.scss'],
+  templateUrl: './mw-material-complex-filter-element-label.component.html',
+  styleUrls: ['./mw-material-complex-filter-element-label.component.scss'],
   animations: [
     trigger('openClose', [
       state(
@@ -24,7 +24,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
     ]),
   ],
 })
-export class MaterialComplexFilterElementLabelComponent {
+export class MwMaterialComplexFilterElementLabelComponent {
   @Input() isOpened = false;
 
   @Output() openEvent = new EventEmitter<void>();

@@ -1,5 +1,6 @@
 # ComplexFilter
 
 ## Install
-- import ComplexFilterModule 
-- import elements MaterialComplexFilterElementsModule
+
+- import MwComplexFilterModule
+- import elements MwMaterialComplexFilterElementsModule
