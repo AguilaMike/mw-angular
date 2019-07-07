@@ -15,16 +15,28 @@ export class ComplexFilterPageComponent {
         id: 'first',
         defaultValue: '',
         component: MwMaterialComplexFilterElementTextComponent,
+        data: {
+          label: 'One',
+          emptyValuePlaceholder: 'any',
+        },
       },
       {
         id: 'second',
         defaultValue: '',
         component: MwMaterialComplexFilterElementTextComponent,
+        data: {
+          label: 'Two',
+          emptyValuePlaceholder: 'any',
+        },
       },
       {
         id: 'third',
         defaultValue: '',
         component: MwMaterialComplexFilterElementTextComponent,
+        data: {
+          label: 'Three',
+          emptyValuePlaceholder: 'any',
+        },
       },
     ],
     dynamicFilters: [
@@ -32,11 +44,19 @@ export class ComplexFilterPageComponent {
         id: 'dynamic-fourth',
         defaultValue: '',
         component: MwMaterialComplexFilterElementTextComponent,
+        data: {
+          label: 'Four',
+          emptyValuePlaceholder: 'any',
+        },
       },
       {
         id: 'dynamic-fifth',
         defaultValue: '',
         component: MwMaterialComplexFilterElementTextComponent,
+        data: {
+          label: 'Five',
+          emptyValuePlaceholder: 'any',
+        },
       },
     ],
     virtualFilters: [

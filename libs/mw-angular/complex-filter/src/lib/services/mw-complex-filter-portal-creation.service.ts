@@ -9,7 +9,7 @@ import { MW_COMPLEX_FILTER_COMPONENT_DATA } from '../tokens/mw-complex-filter-co
 export class MwComplexFilterPortalCreationService {
   constructor(private injector: Injector) {}
 
-  createPortal(component: ComponentType<any>, data: MwComplexFilterComponentDataModel = {}): ComponentPortal<any> {
+  createPortal(component: ComponentType<any>, data: MwComplexFilterComponentDataModel): ComponentPortal<any> {
     return new ComponentPortal(component, null, this.createInjector(data));
   }
 

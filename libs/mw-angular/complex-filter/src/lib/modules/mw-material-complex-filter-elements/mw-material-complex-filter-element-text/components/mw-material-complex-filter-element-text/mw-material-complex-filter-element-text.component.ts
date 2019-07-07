@@ -11,7 +11,5 @@ import { MW_COMPLEX_FILTER_COMPONENT_DATA } from '../../../../../tokens/mw-compl
 export class MwMaterialComplexFilterElementTextComponent {
   isOpened = false;
 
-  constructor(@Inject(MW_COMPLEX_FILTER_COMPONENT_DATA) private data: MwComplexFilterComponentDataModel) {
-    console.log('COMPLEX_FILTER_COMPONENT_DATA', this.data);
-  }
+  constructor(@Inject(MW_COMPLEX_FILTER_COMPONENT_DATA) public data: MwComplexFilterComponentDataModel) {}
 }

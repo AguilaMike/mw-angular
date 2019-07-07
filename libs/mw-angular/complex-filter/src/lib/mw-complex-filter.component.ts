@@ -87,10 +87,16 @@ export class MwComplexFilterComponent implements OnDestroy {
   }
 
   private buildPortalModel(componentModel: MwComplexFilterComponentModel): MwComplexFilterPortalModel {
+    const control = new BehaviorSubject(componentModel.defaultValue);
+
     return {
       id: componentModel.id,
-      control: new BehaviorSubject(componentModel.defaultValue),
-      portal: this.mwComplexFilterPortalCreationService.createPortal(componentModel.component, componentModel.data),
+      control,
+      portal: this.mwComplexFilterPortalCreationService.createPortal(componentModel.component, {
+        ...componentModel.data,
+        id: componentModel.id,
+        control,
+      }),
     };
   }
 

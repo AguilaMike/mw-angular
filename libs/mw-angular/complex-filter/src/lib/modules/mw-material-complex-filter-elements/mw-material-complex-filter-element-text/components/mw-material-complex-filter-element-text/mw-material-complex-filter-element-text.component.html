@@ -4,7 +4,11 @@
   [isOpened]="isOpened"
   (openEvent)="isOpened = true"
 >
-  Some text
+  <strong>{{ data.label }}: </strong>
+  <span *ngIf="data.control | async as value; else emptyValueTpl">"{{ value }}"</span>
+  <ng-template #emptyValueTpl>
+    <span>{{ data.emptyValuePlaceholder }}</span>
+  </ng-template>
 </mw-material-complex-filter-element-label>
 <mw-material-complex-filter-element-overlay
   *ngIf="isOpened"
