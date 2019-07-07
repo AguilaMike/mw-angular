@@ -14,14 +14,4 @@
       color: mat-color($accent, darker);
     }
   }
-
-  [mat-button],
-  [mat-raised-button],
-  [mat-stroked-button],
-  [mat-flat-button],
-  [mat-icon-button],
-  [mat-fab],
-  [mat-mini-fab] {
-    color: inherit !important;
-  }
 }

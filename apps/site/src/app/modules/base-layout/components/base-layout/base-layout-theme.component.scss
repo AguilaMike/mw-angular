@@ -7,7 +7,11 @@
   $background: map-get($theme, background);
   $foreground: map-get($theme, foreground);
 
-  .mat-button.active {
-    color: mat-color($primary, lighter) !important;
+  .mat-button {
+    color: mat-color($primary, default-contrast) !important;
+
+    &.active {
+      color: mat-color($primary, lighter) !important;
+    }
   }
 }
