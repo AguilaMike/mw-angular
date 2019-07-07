@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { MwComplexFilterConfigModel } from '@mw-angular/complex-filter';
+import { MwComplexFilterConfigModel, MwMaterialComplexFilterElementTextComponent } from '@mw-angular/complex-filter';
 
 @Component({
   selector: 'app-complex-filter-page',
@@ -9,7 +9,17 @@ import { MwComplexFilterConfigModel } from '@mw-angular/complex-filter';
 })
 export class ComplexFilterPageComponent {
   complexFilterConfig: MwComplexFilterConfigModel = {
-    defaultFilters: [],
+    defaultFilters: [
+      {
+        component: MwMaterialComplexFilterElementTextComponent,
+      },
+      {
+        component: MwMaterialComplexFilterElementTextComponent,
+      },
+      {
+        component: MwMaterialComplexFilterElementTextComponent,
+      },
+    ],
     dynamicFilters: [],
   };
 }
