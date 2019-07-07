@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MwComplexFilterConfigModel, MwMaterialComplexFilterElementTextComponent } from '@mw-angular/complex-filter';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-complex-filter-page',
@@ -11,15 +12,33 @@ export class ComplexFilterPageComponent {
   complexFilterConfig: MwComplexFilterConfigModel = {
     defaultFilters: [
       {
+        id: 'first',
         component: MwMaterialComplexFilterElementTextComponent,
       },
       {
+        id: 'second',
         component: MwMaterialComplexFilterElementTextComponent,
       },
       {
+        id: 'third',
         component: MwMaterialComplexFilterElementTextComponent,
       },
     ],
-    dynamicFilters: [],
+    dynamicFilters: [
+      {
+        id: 'dynamic-fourth',
+        component: MwMaterialComplexFilterElementTextComponent,
+      },
+      {
+        id: 'dynamic-fifth',
+        component: MwMaterialComplexFilterElementTextComponent,
+      },
+    ],
+    virtualFilters: [
+      {
+        id: 'virtual-sixth',
+        source: timer(0, 10000),
+      },
+    ],
   };
 }
