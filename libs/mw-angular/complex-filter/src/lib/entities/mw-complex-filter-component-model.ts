@@ -2,6 +2,7 @@ import { MwComplexFilterComponentDataModel } from './mw-complex-filter-component
 
 export interface MwComplexFilterComponentModel {
   id: string;
+  defaultValue: any;
   component: any;
   data?: MwComplexFilterComponentDataModel;
 }

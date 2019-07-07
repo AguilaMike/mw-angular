@@ -13,24 +13,29 @@ export class ComplexFilterPageComponent {
     defaultFilters: [
       {
         id: 'first',
+        defaultValue: '',
         component: MwMaterialComplexFilterElementTextComponent,
       },
       {
         id: 'second',
+        defaultValue: '',
         component: MwMaterialComplexFilterElementTextComponent,
       },
       {
         id: 'third',
+        defaultValue: '',
         component: MwMaterialComplexFilterElementTextComponent,
       },
     ],
     dynamicFilters: [
       {
         id: 'dynamic-fourth',
+        defaultValue: '',
         component: MwMaterialComplexFilterElementTextComponent,
       },
       {
         id: 'dynamic-fifth',
+        defaultValue: '',
         component: MwMaterialComplexFilterElementTextComponent,
       },
     ],

@@ -11,7 +11,7 @@ export class MwComplexFilterInnerComponent {
   @Input() defaultPortalModels: MwComplexFilterPortalModel[] = [];
   @Input() dynamicPortalModels: MwComplexFilterPortalModel[] = [];
 
-  trackByFn(_: number, item: MwComplexFilterPortalModel): string | number {
+  trackByFn(_index: number, item: MwComplexFilterPortalModel): string | number {
     return item.id;
   }
 }

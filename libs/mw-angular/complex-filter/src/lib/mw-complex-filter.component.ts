@@ -17,21 +17,24 @@ import { MwComplexFilterPortalCreationService } from './services/mw-complex-filt
   `,
 })
 export class MwComplexFilterComponent {
-  @Input() set config(config: MwComplexFilterConfigModel) {
-    this.defaultPortalModelsSubject.next(
-      config.defaultFilters.map((componentModel: MwComplexFilterComponentModel) =>
-        this.buildPortalModel(componentModel),
-      ),
-    );
+  @Input()
+  set config(config: MwComplexFilterConfigModel) {
+    if (config) {
+      this._config = config;
 
-    if (config.dynamicFilters) {
-      this.dynamicPortalModelsSubject.next(
-        config.dynamicFilters.map((componentModel: MwComplexFilterComponentModel) =>
+      this.defaultPortalModelsSubject.next(
+        config.defaultFilters.map((componentModel: MwComplexFilterComponentModel) =>
           this.buildPortalModel(componentModel),
         ),
       );
+
+      this.dynamicPortalModelsSubject.next([]);
     }
   }
+  get config(): MwComplexFilterConfigModel {
+    return this._config;
+  }
+  private _config: MwComplexFilterConfigModel;
 
   defaultPortalModelsSubject = new BehaviorSubject<MwComplexFilterPortalModel[]>([]);
   dynamicPortalModelsSubject = new BehaviorSubject<MwComplexFilterPortalModel[]>([]);
@@ -41,6 +44,7 @@ export class MwComplexFilterComponent {
   private buildPortalModel(componentModel: MwComplexFilterComponentModel): MwComplexFilterPortalModel {
     return {
       id: componentModel.id,
+      control: new BehaviorSubject(componentModel.defaultValue),
       portal: this.mwComplexFilterPortalCreationService.createPortal(componentModel.component, componentModel.data),
     };
   }
