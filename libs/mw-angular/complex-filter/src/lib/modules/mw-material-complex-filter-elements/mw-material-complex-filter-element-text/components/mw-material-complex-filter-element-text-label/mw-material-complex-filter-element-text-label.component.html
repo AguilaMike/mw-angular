@@ -1,0 +1,5 @@
+<strong>{{ data.label }}: </strong>
+<span *ngIf="data.control | async as value; else emptyValueTpl">"{{ value }}"</span>
+<ng-template #emptyValueTpl>
+  <span>{{ data.emptyValuePlaceholder }}</span>
+</ng-template>
