@@ -1,6 +1,6 @@
 @import '../styles-theme';
 @import '../../app/modules/base-layout/components/base-layout/base-layout-theme.component.scss';
-@import '../../../../../dist/mw-angular/complex-filter/scss/mw-complex-filter-material-elements-theme.scss';
+@import '../../../../../libs/mw-angular/complex-filter/src/lib/modules/mw-complex-filter-material-elements/scss/mw-complex-filter-material-elements-theme';
 
 @mixin custom-components-theme($theme) {
   @include styles-theme($theme);
