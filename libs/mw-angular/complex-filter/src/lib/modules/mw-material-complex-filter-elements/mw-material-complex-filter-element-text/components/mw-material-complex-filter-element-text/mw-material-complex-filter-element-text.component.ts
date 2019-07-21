@@ -12,4 +12,8 @@ export class MwMaterialComplexFilterElementTextComponent {
   isOpened = false;
 
   constructor(@Inject(MW_COMPLEX_FILTER_COMPONENT_DATA) public data: MwComplexFilterElementTextDataModel) {}
+
+  onChangeValueEvent(value: string): void {
+    this.data.control.next(value);
+  }
 }
