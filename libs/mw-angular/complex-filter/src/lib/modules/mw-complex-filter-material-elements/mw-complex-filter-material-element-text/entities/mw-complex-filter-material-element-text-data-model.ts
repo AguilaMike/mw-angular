@@ -2,5 +2,7 @@ import { MwComplexFilterComponentDataModel } from '../../../../entities/mw-compl
 
 export interface MwComplexFilterMaterialElementTextDataModel extends MwComplexFilterComponentDataModel {
   label: string;
-  emptyValuePlaceholder: string;
+  labelPlaceholder: string;
+  valuePlaceholder: string;
+  hint?: string;
 }

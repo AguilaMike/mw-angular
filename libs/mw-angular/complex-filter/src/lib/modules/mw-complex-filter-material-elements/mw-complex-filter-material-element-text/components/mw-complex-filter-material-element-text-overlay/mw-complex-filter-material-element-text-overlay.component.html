@@ -1,5 +1,12 @@
 <mat-form-field>
-  <input matInput #input [value]="data.control | async" (keyup)="changeValueEvent.emit(input.value)" />
+  <input
+    matInput
+    #input
+    placeholder="{{ data.valuePlaceholder }}"
+    [value]="data.control | async"
+    (keyup)="changeValueEvent.emit(input.value)"
+  />
+  <mat-hint *ngIf="data.hint">{{ data.hint }}</mat-hint>
   <button
     *ngIf="data.control | async; else searchBtnTpl"
     mat-button

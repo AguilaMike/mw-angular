@@ -17,7 +17,9 @@ export class ComplexFilterPageComponent {
         component: MwComplexFilterMaterialElementTextComponent,
         data: {
           label: 'One',
-          emptyValuePlaceholder: 'any',
+          labelPlaceholder: 'any',
+          valuePlaceholder: 'Term',
+          hint: 'Filter Data by: "Term"',
         },
       },
       {
@@ -26,7 +28,8 @@ export class ComplexFilterPageComponent {
         component: MwComplexFilterMaterialElementTextComponent,
         data: {
           label: 'Two',
-          emptyValuePlaceholder: 'any',
+          labelPlaceholder: 'any',
+          valuePlaceholder: 'Two',
         },
       },
       {
@@ -35,7 +38,8 @@ export class ComplexFilterPageComponent {
         component: MwComplexFilterMaterialElementTextComponent,
         data: {
           label: 'Three',
-          emptyValuePlaceholder: 'any',
+          labelPlaceholder: 'any',
+          valuePlaceholder: 'Three',
         },
       },
     ],
@@ -46,7 +50,8 @@ export class ComplexFilterPageComponent {
         component: MwComplexFilterMaterialElementTextComponent,
         data: {
           label: 'Four',
-          emptyValuePlaceholder: 'any',
+          labelPlaceholder: 'any',
+          valuePlaceholder: 'Term',
         },
       },
       {
@@ -55,7 +60,8 @@ export class ComplexFilterPageComponent {
         component: MwComplexFilterMaterialElementTextComponent,
         data: {
           label: 'Five',
-          emptyValuePlaceholder: 'any',
+          labelPlaceholder: 'any',
+          valuePlaceholder: 'Term',
         },
       },
     ],
