@@ -1,0 +1,5 @@
+@import '../mw-complex-filter-material-element-overlay/components/mw-complex-filter-material-element-overlay/mw-complex-filter-material-element-overlay-theme.component';
+
+@mixin mw-complex-filter-material-elements($theme) {
+  @include mw-complex-filter-material-element-overlay-theme($theme);
+}

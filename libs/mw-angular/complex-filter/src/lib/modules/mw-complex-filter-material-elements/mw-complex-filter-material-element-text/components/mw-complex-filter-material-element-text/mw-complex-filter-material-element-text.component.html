@@ -1,23 +1,23 @@
-<mw-material-complex-filter-element-label
+<mw-complex-filter-material-element-label
   cdkOverlayOrigin
   #overlayOrigin="cdkOverlayOrigin"
   [isOpened]="isOpened"
   (openEvent)="isOpened = true"
 >
-  <mw-material-complex-filter-element-text-label
+  <mw-complex-filter-material-element-text-label
     [label]="data.label"
     [value]="data.control | async"
     [emptyValuePlaceholder]="data.emptyValuePlaceholder"
-  ></mw-material-complex-filter-element-text-label>
-</mw-material-complex-filter-element-label>
-<mw-material-complex-filter-element-overlay
+  ></mw-complex-filter-material-element-text-label>
+</mw-complex-filter-material-element-label>
+<mw-complex-filter-material-element-overlay
   *ngIf="isOpened"
   [overlayOrigin]="overlayOrigin"
   [isOpened]="isOpened"
   (closeEvent)="isOpened = false"
 >
-  <mw-material-complex-filter-element-text-overlay
+  <mw-complex-filter-material-element-text-overlay
     [value]="data.control | async"
     (changeValueEvent)="onChangeValueEvent($event)"
-  ></mw-material-complex-filter-element-text-overlay>
-</mw-material-complex-filter-element-overlay>
+  ></mw-complex-filter-material-element-text-overlay>
+</mw-complex-filter-material-element-overlay>

@@ -2,12 +2,12 @@ import { CdkOverlayOrigin } from '@angular/cdk/overlay';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'mw-material-complex-filter-element-overlay',
+  selector: 'mw-complex-filter-material-element-overlay',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './mw-material-complex-filter-element-overlay.component.html',
-  styleUrls: ['./mw-material-complex-filter-element-overlay.component.scss'],
+  templateUrl: './mw-complex-filter-material-element-overlay.component.html',
+  styleUrls: ['./mw-complex-filter-material-element-overlay.component.scss'],
 })
-export class MwMaterialComplexFilterElementOverlayComponent {
+export class MwComplexFilterMaterialElementOverlayComponent {
   @Input() overlayOrigin: CdkOverlayOrigin;
   @Input() isOpened = false;
 

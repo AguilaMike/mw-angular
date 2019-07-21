@@ -3,4 +3,4 @@
 ## Install
 
 - import MwComplexFilterModule
-- import elements MwMaterialComplexFilterElementsModule
+- import elements MwComplexFilterMaterialElementsModule

@@ -1,6 +1,6 @@
 {
-  "entry": "./libs/mw-angular/complex-filter/src/lib/scss/mw-material-complex-filter-elements-theme.scss",
-  "dest": "./dist/mw-angular/complex-filter/scss/mw-material-complex-filter-elements-theme.scss",
+  "entry": "./libs/mw-angular/complex-filter/src/lib/modules/mw-complex-filter-material-elements/scss/mw-complex-filter-material-elements-theme.scss",
+  "dest": "./dist/mw-angular/complex-filter/scss/mw-complex-filter-material-elements-theme.scss",
   "ignoredImports": ["~@angular/material/theming"],
   "verbosity": "Errors"
 }

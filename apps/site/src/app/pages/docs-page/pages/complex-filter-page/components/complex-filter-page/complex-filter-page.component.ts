@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { MwComplexFilterConfigModel, MwMaterialComplexFilterElementTextComponent } from '@mw-angular/complex-filter';
+import { MwComplexFilterConfigModel, MwComplexFilterMaterialElementTextComponent } from '@mw-angular/complex-filter';
 import { timer } from 'rxjs';
 
 @Component({
@@ -14,7 +14,7 @@ export class ComplexFilterPageComponent {
       {
         id: 'first',
         defaultValue: '',
-        component: MwMaterialComplexFilterElementTextComponent,
+        component: MwComplexFilterMaterialElementTextComponent,
         data: {
           label: 'One',
           emptyValuePlaceholder: 'any',
@@ -23,7 +23,7 @@ export class ComplexFilterPageComponent {
       {
         id: 'second',
         defaultValue: '',
-        component: MwMaterialComplexFilterElementTextComponent,
+        component: MwComplexFilterMaterialElementTextComponent,
         data: {
           label: 'Two',
           emptyValuePlaceholder: 'any',
@@ -32,7 +32,7 @@ export class ComplexFilterPageComponent {
       {
         id: 'third',
         defaultValue: '',
-        component: MwMaterialComplexFilterElementTextComponent,
+        component: MwComplexFilterMaterialElementTextComponent,
         data: {
           label: 'Three',
           emptyValuePlaceholder: 'any',
@@ -43,7 +43,7 @@ export class ComplexFilterPageComponent {
       {
         id: 'dynamic-fourth',
         defaultValue: '',
-        component: MwMaterialComplexFilterElementTextComponent,
+        component: MwComplexFilterMaterialElementTextComponent,
         data: {
           label: 'Four',
           emptyValuePlaceholder: 'any',
@@ -52,7 +52,7 @@ export class ComplexFilterPageComponent {
       {
         id: 'dynamic-fifth',
         defaultValue: '',
-        component: MwMaterialComplexFilterElementTextComponent,
+        component: MwComplexFilterMaterialElementTextComponent,
         data: {
           label: 'Five',
           emptyValuePlaceholder: 'any',

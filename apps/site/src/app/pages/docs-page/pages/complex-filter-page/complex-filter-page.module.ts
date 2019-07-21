@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { MwComplexFilterModule, MwMaterialComplexFilterElementsModule } from '@mw-angular/complex-filter';
+import { MwComplexFilterModule, MwComplexFilterMaterialElementsModule } from '@mw-angular/complex-filter';
 import { SharedModule } from '../../../../modules/shared/shared.module';
 import { DocsLayoutModule } from '../../modules/docs-layout/docs-layout.module';
 import { ComplexFilterPageContainerComponent } from './complex-filter-page-container.component';
@@ -12,7 +12,7 @@ import { ComplexFilterPageComponent } from './components/complex-filter-page/com
     ComplexFilterPageRoutingModule,
     DocsLayoutModule,
     MwComplexFilterModule,
-    MwMaterialComplexFilterElementsModule,
+    MwComplexFilterMaterialElementsModule,
   ],
   declarations: [ComplexFilterPageContainerComponent, ComplexFilterPageComponent],
 })
