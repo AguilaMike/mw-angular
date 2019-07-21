@@ -4,11 +4,7 @@
   [isOpened]="isOpened"
   (openEvent)="isOpened = true"
 >
-  <mw-complex-filter-material-element-text-label
-    [label]="data.label"
-    [value]="data.control | async"
-    [emptyValuePlaceholder]="data.emptyValuePlaceholder"
-  ></mw-complex-filter-material-element-text-label>
+  <mw-complex-filter-material-element-text-label [data]="data"></mw-complex-filter-material-element-text-label>
 </mw-complex-filter-material-element-label>
 <mw-complex-filter-material-element-overlay
   *ngIf="isOpened"
@@ -17,7 +13,7 @@
   (closeEvent)="isOpened = false"
 >
   <mw-complex-filter-material-element-text-overlay
-    [value]="data.control | async"
+    [data]="data"
     (changeValueEvent)="onChangeValueEvent($event)"
   ></mw-complex-filter-material-element-text-overlay>
 </mw-complex-filter-material-element-overlay>

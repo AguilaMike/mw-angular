@@ -1,18 +1,19 @@
 <mat-form-field>
-  <input matInput placeholder="Term" />
-  <mat-hint>Filter Data by: "Term"</mat-hint>
+  <mat-label>{{ data.label }}</mat-label>
+  <input matInput #input placeholder="{{ data.emptyValuePlaceholder }}" />
   <button
+    *ngIf="data.control | async; else searchBtnTpl"
     mat-button
     matSuffix
     mat-icon-button
-    aria-label="Clear"
     type="button"
     (click)="changeValueEvent.emit('')"
-    *ngIf="value"
   >
     <mat-icon>clear</mat-icon>
   </button>
-  <button mat-button matSuffix mat-icon-button aria-label="Search" type="button" *ngIf="!value">
-    <mat-icon>search</mat-icon>
-  </button>
+  <ng-template #searchBtnTpl>
+    <button mat-button matSuffix mat-icon-button type="button" (click)="changeValueEvent.emit(input.value)">
+      <mat-icon>search</mat-icon>
+    </button>
+  </ng-template>
 </mat-form-field>

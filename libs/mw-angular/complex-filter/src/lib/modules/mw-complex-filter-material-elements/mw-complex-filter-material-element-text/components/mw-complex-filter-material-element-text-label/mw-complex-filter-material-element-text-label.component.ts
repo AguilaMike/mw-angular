@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { MwComplexFilterMaterialElementTextDataModel } from '../../entities/mw-complex-filter-material-element-text-data-model';
 
 @Component({
   selector: 'mw-complex-filter-material-element-text-label',
@@ -7,7 +8,5 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   styleUrls: ['./mw-complex-filter-material-element-text-label.component.scss'],
 })
 export class MwComplexFilterMaterialElementTextLabelComponent {
-  @Input() label: string;
-  @Input() value: string;
-  @Input() emptyValuePlaceholder: string;
+  @Input() data: MwComplexFilterMaterialElementTextDataModel;
 }

@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { MwComplexFilterMaterialElementTextDataModel } from '../../entities/mw-complex-filter-material-element-text-data-model';
 
 @Component({
   selector: 'mw-complex-filter-material-element-text-overlay',
@@ -7,7 +8,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
   styleUrls: ['./mw-complex-filter-material-element-text-overlay.component.scss'],
 })
 export class MwComplexFilterMaterialElementTextOverlayComponent {
-  @Input() value: string;
+  @Input() data: MwComplexFilterMaterialElementTextDataModel;
 
   @Output() changeValueEvent = new EventEmitter<string>();
 }
