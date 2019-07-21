@@ -109,6 +109,7 @@
     "pretty-quick": "^1.11.0",
     "protractor": "~5.4.0",
     "rimraf": "^2.6.3",
+    "scss-bundle": "^2.5.1",
     "stylelint": "^10.0.1",
     "stylelint-config-standard": "^18.3.0",
     "ts-loader": "^5.2.0",
