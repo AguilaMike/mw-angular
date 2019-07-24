@@ -193,5 +193,13 @@ describe('MwLoadingService', () => {
 
       expect(onCompleteEventSpy).toHaveBeenCalled();
     }));
+
+    it('should not fail on double destroy', fakeAsync(() => {
+      expect(() => {
+        service.start();
+        service.destroy();
+        service.destroy();
+      }).not.toThrow();
+    }));
   });
 });

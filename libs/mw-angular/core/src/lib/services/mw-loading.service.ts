@@ -46,9 +46,11 @@ export class MwLoadingService {
   }
 
   destroy(tag = 'general'): void {
-    this.isLoadingSubjectsPool[tag].next(0);
-    this.isLoadingSubjectsPool[tag].complete();
-    delete this.isLoadingSubjectsPool[tag];
+    if (this.isLoadingSubjectsPool[tag] !== undefined) {
+      this.isLoadingSubjectsPool[tag].next(0);
+      this.isLoadingSubjectsPool[tag].complete();
+      delete this.isLoadingSubjectsPool[tag];
+    }
   }
 
   private checkAndInitIsLoadingSubject(tag: string): void {
