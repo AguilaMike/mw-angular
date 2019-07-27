@@ -10,6 +10,10 @@ import { MwComplexFilterPortalModel } from './entities/mw-complex-filter-portal-
 import { MwComplexFilterVirtualComponentModel } from './entities/mw-complex-filter-virtual-component-model';
 import { MwComplexFilterPortalCreationService } from './services/mw-complex-filter-portal-creation.service';
 
+interface FiltersMap {
+  [id: string]: MwComplexFilterComponentModel;
+}
+
 @Component({
   selector: 'mw-complex-filter',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -19,7 +23,7 @@ import { MwComplexFilterPortalCreationService } from './services/mw-complex-filt
       [deleteButtonPortal]="deleteButtonPortal"
       [defaultPortalModels]="defaultPortalModelsSubject | async"
       [dynamicPortalModels]="dynamicPortalModelsSubject | async"
-      (hideDynamicFilterEvent)="hideDynamicFilter($event)"
+      (hideDynamicFilterEvent)="onHideDynamicFilter($event)"
     ></mw-complex-filter-inner>
   `,
 })
@@ -37,16 +41,12 @@ export class MwComplexFilterComponent implements OnDestroy {
         ),
       );
 
-      if (config.dynamicFilters) {
-        this.dynamicPortalModelsSubject.next(
-          config.dynamicFilters.map((componentModel: MwComplexFilterComponentModel) =>
-            this.buildPortalModel(componentModel),
-          ),
-        );
-      }
+      this.virtualModelsSubject.next(config.virtualFilters || []);
 
-      // this.dynamicPortalModelsSubject.next([]);
-      // this.virtualModelsSubject.next(config.virtualFilters || []);
+      this.dynamicPortalModelsSubject.next([]);
+      if (config.dynamicFilters) {
+        this.dynamicFiltersMap = this.convertFiltersToMap(config.dynamicFilters);
+      }
     }
   }
 
@@ -61,8 +61,8 @@ export class MwComplexFilterComponent implements OnDestroy {
   deleteButtonPortal: ComponentPortal<any>;
   defaultPortalModelsSubject = new BehaviorSubject<MwComplexFilterPortalModel[]>([]);
   dynamicPortalModelsSubject = new BehaviorSubject<MwComplexFilterPortalModel[]>([]);
-  virtualModelsSubject = new BehaviorSubject<MwComplexFilterVirtualComponentModel[]>([]);
-
+  private virtualModelsSubject = new BehaviorSubject<MwComplexFilterVirtualComponentModel[]>([]);
+  private dynamicFiltersMap: FiltersMap = {};
   private _config: MwComplexFilterConfigModel;
   private destroySubject = new Subject();
 
@@ -70,7 +70,16 @@ export class MwComplexFilterComponent implements OnDestroy {
     this.initChangesEvent();
   }
 
-  hideDynamicFilter(id: string): void {
+  onShowDynamicFilter(id: string): void {
+    if (!this.dynamicFiltersMap[id]) {
+      throw new Error('Filter does not exist.');
+    }
+
+    const dynamicPortalModel = this.buildPortalModel(this.dynamicFiltersMap[id]);
+    this.dynamicPortalModelsSubject.next([...this.dynamicPortalModelsSubject.getValue(), dynamicPortalModel]);
+  }
+
+  onHideDynamicFilter(id: string): void {
     const dynamicFilters = this.dynamicPortalModelsSubject
       .getValue()
       .filter((item: MwComplexFilterPortalModel) => item.id !== id);
@@ -119,6 +128,7 @@ export class MwComplexFilterComponent implements OnDestroy {
       portal: this.mwComplexFilterPortalCreationService.createPortal(componentModel.component, {
         ...componentModel.data,
         id: componentModel.id,
+        label: componentModel.label,
         control,
       }),
     };
@@ -126,6 +136,13 @@ export class MwComplexFilterComponent implements OnDestroy {
 
   private modifyControlValue(id: string, control: Observable<any>): Observable<MwComplexFilterModifiedStreamModel> {
     return control.pipe(map((value: any) => ({ id, value })));
+  }
+
+  private convertFiltersToMap(filters: MwComplexFilterComponentModel[]): FiltersMap {
+    return filters.reduce((result: FiltersMap, filter: MwComplexFilterComponentModel) => {
+      result[filter.id] = filter;
+      return result;
+    }, {});
   }
 
   public ngOnDestroy(): void {

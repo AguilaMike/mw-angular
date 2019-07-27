@@ -18,10 +18,10 @@ export class ComplexFilterPageComponent {
     defaultFilters: [
       {
         id: 'first',
+        label: 'One',
         defaultValue: '',
         component: MwComplexFilterMaterialElementTextComponent,
         data: {
-          label: 'One',
           labelPlaceholder: 'any',
           valuePlaceholder: 'Term',
           hint: 'Filter Data by: "Term"',
@@ -29,20 +29,20 @@ export class ComplexFilterPageComponent {
       },
       {
         id: 'second',
+        label: 'Two',
         defaultValue: '',
         component: MwComplexFilterMaterialElementTextComponent,
         data: {
-          label: 'Two',
           labelPlaceholder: 'any',
           valuePlaceholder: 'Two',
         },
       },
       {
         id: 'third',
+        label: 'Three',
         defaultValue: '',
         component: MwComplexFilterMaterialElementTextComponent,
         data: {
-          label: 'Three',
           labelPlaceholder: 'any',
           valuePlaceholder: 'Three',
         },
@@ -51,20 +51,20 @@ export class ComplexFilterPageComponent {
     dynamicFilters: [
       {
         id: 'dynamic-fourth',
+        label: 'Four',
         defaultValue: '',
         component: MwComplexFilterMaterialElementTextComponent,
         data: {
-          label: 'Four',
           labelPlaceholder: 'any',
           valuePlaceholder: 'Term',
         },
       },
       {
         id: 'dynamic-fifth',
+        label: 'Five',
         defaultValue: '',
         component: MwComplexFilterMaterialElementTextComponent,
         data: {
-          label: 'Five',
           labelPlaceholder: 'any',
           valuePlaceholder: 'Term',
         },
