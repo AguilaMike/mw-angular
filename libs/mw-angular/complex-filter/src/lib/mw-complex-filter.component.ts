@@ -37,8 +37,16 @@ export class MwComplexFilterComponent implements OnDestroy {
         ),
       );
 
-      this.dynamicPortalModelsSubject.next([]);
-      this.virtualModelsSubject.next(config.virtualFilters || []);
+      if (config.dynamicFilters) {
+        this.dynamicPortalModelsSubject.next(
+          config.dynamicFilters.map((componentModel: MwComplexFilterComponentModel) =>
+            this.buildPortalModel(componentModel),
+          ),
+        );
+      }
+
+      // this.dynamicPortalModelsSubject.next([]);
+      // this.virtualModelsSubject.next(config.virtualFilters || []);
     }
   }
 
