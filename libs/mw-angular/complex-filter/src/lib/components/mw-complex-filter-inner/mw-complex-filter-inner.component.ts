@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ComponentPortal } from '@angular/cdk/portal';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { MwComplexFilterPortalModel } from '../../entities/mw-complex-filter-portal-model';
 
 @Component({
@@ -8,8 +9,11 @@ import { MwComplexFilterPortalModel } from '../../entities/mw-complex-filter-por
   styleUrls: ['./mw-complex-filter-inner.component.scss'],
 })
 export class MwComplexFilterInnerComponent {
+  @Input() deleteButtonPortal: ComponentPortal<any>;
   @Input() defaultPortalModels: MwComplexFilterPortalModel[] = [];
   @Input() dynamicPortalModels: MwComplexFilterPortalModel[] = [];
+
+  @Output() hideDynamicFilterEvent = new EventEmitter<string>();
 
   trackByFn(_index: number, item: MwComplexFilterPortalModel): string | number {
     return item.id;

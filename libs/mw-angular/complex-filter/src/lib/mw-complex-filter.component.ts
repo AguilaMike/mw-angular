@@ -1,3 +1,4 @@
+import { ComponentPortal } from '@angular/cdk/portal';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 import { BehaviorSubject, combineLatest, Observable, Subject } from 'rxjs';
 import { debounceTime, map, switchMap, takeUntil } from 'rxjs/operators';
@@ -15,8 +16,10 @@ import { MwComplexFilterPortalCreationService } from './services/mw-complex-filt
   viewProviders: [MwComplexFilterPortalCreationService],
   template: `
     <mw-complex-filter-inner
+      [deleteButtonPortal]="deleteButtonPortal"
       [defaultPortalModels]="defaultPortalModelsSubject | async"
       [dynamicPortalModels]="dynamicPortalModelsSubject | async"
+      (hideDynamicFilterEvent)="hideDynamicFilter($event)"
     ></mw-complex-filter-inner>
   `,
 })
@@ -25,6 +28,8 @@ export class MwComplexFilterComponent implements OnDestroy {
   set config(config: MwComplexFilterConfigModel) {
     if (config) {
       this._config = config;
+
+      this.deleteButtonPortal = new ComponentPortal(config.deleteButtonComponent);
 
       this.defaultPortalModelsSubject.next(
         config.defaultFilters.map((componentModel: MwComplexFilterComponentModel) =>
@@ -45,6 +50,7 @@ export class MwComplexFilterComponent implements OnDestroy {
 
   @Output() changeEvent = new EventEmitter<MwComplexFilterChangeEventModel>();
 
+  deleteButtonPortal: ComponentPortal<any>;
   defaultPortalModelsSubject = new BehaviorSubject<MwComplexFilterPortalModel[]>([]);
   dynamicPortalModelsSubject = new BehaviorSubject<MwComplexFilterPortalModel[]>([]);
   virtualModelsSubject = new BehaviorSubject<MwComplexFilterVirtualComponentModel[]>([]);
@@ -54,6 +60,13 @@ export class MwComplexFilterComponent implements OnDestroy {
 
   constructor(private mwComplexFilterPortalCreationService: MwComplexFilterPortalCreationService) {
     this.initChangesEvent();
+  }
+
+  hideDynamicFilter(id: string): void {
+    const dynamicFilters = this.dynamicPortalModelsSubject
+      .getValue()
+      .filter((item: MwComplexFilterPortalModel) => item.id !== id);
+    this.dynamicPortalModelsSubject.next(dynamicFilters);
   }
 
   private initChangesEvent(): void {
