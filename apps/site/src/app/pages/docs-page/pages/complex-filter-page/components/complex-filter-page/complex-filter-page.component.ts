@@ -1,5 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { MwComplexFilterConfigModel, MwComplexFilterMaterialElementTextComponent } from '@mw-angular/complex-filter';
+import {
+  MwComplexFilterConfigModel,
+  MwComplexFilterMaterialDeleteButtonComponent,
+  MwComplexFilterMaterialElementTextComponent,
+} from '@mw-angular/complex-filter';
 import { timer } from 'rxjs';
 
 @Component({
@@ -10,6 +14,7 @@ import { timer } from 'rxjs';
 })
 export class ComplexFilterPageComponent {
   complexFilterConfig: MwComplexFilterConfigModel = {
+    deleteButtonComponent: MwComplexFilterMaterialDeleteButtonComponent,
     defaultFilters: [
       {
         id: 'first',
