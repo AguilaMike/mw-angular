@@ -41,7 +41,7 @@ export class MwComplexFilterComponent implements OnDestroy {
     return this._config;
   }
 
-  @Input() debounceTime = 200;
+  @Input() debounceTime = 100;
 
   @Output() changeEvent = new EventEmitter<MwComplexFilterChangeEventModel>();
 

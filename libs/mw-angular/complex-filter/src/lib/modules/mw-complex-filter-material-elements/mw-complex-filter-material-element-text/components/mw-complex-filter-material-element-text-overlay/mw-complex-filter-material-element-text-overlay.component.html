@@ -4,7 +4,7 @@
     #input
     placeholder="{{ data.valuePlaceholder }}"
     [value]="data.control | async"
-    (keyup)="changeValueEvent.emit(input.value)"
+    (change)="changeValueEvent.emit(input.value)"
   />
   <mat-hint *ngIf="data.hint">{{ data.hint }}</mat-hint>
   <button
