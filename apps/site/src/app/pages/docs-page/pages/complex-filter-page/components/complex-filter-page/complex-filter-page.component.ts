@@ -68,8 +68,12 @@ export class ComplexFilterPageComponent {
     virtualFilters: [
       {
         id: 'virtual-sixth',
-        control: timer(0, 10000),
+        control: timer(10000),
       },
     ],
   };
+
+  onChangeEvent(value: any) {
+    console.log(value);
+  }
 }

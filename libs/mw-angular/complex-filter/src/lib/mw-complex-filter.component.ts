@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 import { BehaviorSubject, combineLatest, Observable, Subject } from 'rxjs';
-import { map, switchMap, takeUntil } from 'rxjs/operators';
+import { debounceTime, map, switchMap, takeUntil } from 'rxjs/operators';
 import { MwComplexFilterChangeEventModel } from './entities/mw-complex-filter-change-event-model';
 import { MwComplexFilterComponentModel } from './entities/mw-complex-filter-component-model';
 import { MwComplexFilterConfigModel } from './entities/mw-complex-filter-config-model';
@@ -41,6 +41,8 @@ export class MwComplexFilterComponent implements OnDestroy {
     return this._config;
   }
 
+  @Input() debounceTime = 200;
+
   @Output() changeEvent = new EventEmitter<MwComplexFilterChangeEventModel>();
 
   defaultPortalModelsSubject = new BehaviorSubject<MwComplexFilterPortalModel[]>([]);
@@ -74,6 +76,7 @@ export class MwComplexFilterComponent implements OnDestroy {
 
           return combineLatest(...streams);
         }),
+        debounceTime(this.debounceTime),
         takeUntil(this.destroySubject),
       )
       .subscribe((values: MwComplexFilterModifiedStreamModel[]) => {
