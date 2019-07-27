@@ -1,12 +1,14 @@
 <ng-template
   cdkConnectedOverlay
+  cdkConnectedOverlayLockPosition
+  cdkConnectedOverlayHasBackdrop
+  cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
   [cdkConnectedOverlayOrigin]="overlayOrigin"
   [cdkConnectedOverlayOpen]="isOpened"
-  [cdkConnectedOverlayHasBackdrop]="true"
-  [cdkConnectedOverlayBackdropClass]="'cdk-overlay-transparent-backdrop'"
-  [cdkConnectedOverlayPanelClass]="['mw-complex-filter-material-element-overlay', 'mat-elevation-z2']"
   (backdropClick)="closeEvent.emit()"
   (detach)="closeEvent.emit()"
 >
-  <ng-content></ng-content>
+  <div @transformPanel class="mw-complex-filter-material-element-overlay mat-elevation-z2">
+    <ng-content></ng-content>
+  </div>
 </ng-template>

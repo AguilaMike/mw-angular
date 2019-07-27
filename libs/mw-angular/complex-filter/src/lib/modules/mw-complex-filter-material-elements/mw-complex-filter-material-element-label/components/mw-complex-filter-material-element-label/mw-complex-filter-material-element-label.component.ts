@@ -20,7 +20,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
           transform: 'rotate(-180deg)',
         }),
       ),
-      transition('opened <=> closed', [animate('0.2s')]),
+      transition('opened <=> closed', animate('0.15s')),
     ]),
   ],
 })
