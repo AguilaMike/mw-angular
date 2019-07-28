@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { MwComplexFilterEventType } from '../../../../../entities/mw-complex-filter-event-model';
 import { MwComplexFilterEventBusService } from '../../../../../services/mw-complex-filter-event-bus.service';
+import { MW_COMPLEX_FILTER_DELETE_BUTTON_DATA } from '../../../../../tokens/mw-complex-filter-delete-button-data.token';
 
 @Component({
   selector: 'mw-complex-filter-material-delete-button',
@@ -9,9 +10,16 @@ import { MwComplexFilterEventBusService } from '../../../../../services/mw-compl
   styleUrls: ['./mw-complex-filter-material-delete-button.component.scss'],
 })
 export class MwComplexFilterMaterialDeleteButtonComponent {
-  constructor(private mwComplexFilterEventBusService: MwComplexFilterEventBusService) {}
+  constructor(
+    @Inject(MW_COMPLEX_FILTER_DELETE_BUTTON_DATA) private data: { id: string },
+    private mwComplexFilterEventBusService: MwComplexFilterEventBusService,
+  ) {
+    if (!data || !data.id) {
+      throw new Error('Incorrect data params.');
+    }
+  }
 
   onClick(): void {
-    this.mwComplexFilterEventBusService.emit(MwComplexFilterEventType.HideFilter);
+    this.mwComplexFilterEventBusService.emit(MwComplexFilterEventType.HideFilter, { id: this.data.id });
   }
 }

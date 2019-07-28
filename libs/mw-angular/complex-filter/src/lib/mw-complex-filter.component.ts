@@ -13,6 +13,8 @@ import {
 import { MwComplexFilterVirtualComponentModel } from './entities/mw-complex-filter-virtual-component-model';
 import { MwComplexFilterEventBusService } from './services/mw-complex-filter-event-bus.service';
 import { MwComplexFilterPortalCreationService } from './services/mw-complex-filter-portal-creation.service';
+import { MW_COMPLEX_FILTER_COMPONENT_DATA } from './tokens/mw-complex-filter-component-data.token';
+import { MW_COMPLEX_FILTER_DELETE_BUTTON_DATA } from './tokens/mw-complex-filter-delete-button-data.token';
 
 @Component({
   selector: 'mw-complex-filter',
@@ -138,17 +140,22 @@ export class MwComplexFilterComponent implements OnDestroy {
     const result: MwComplexFilterPortalModel = {
       id: componentModel.id,
       control,
-      filterPortal: this.mwComplexFilterPortalCreationService.createPortal(componentModel.component, {
-        ...componentModel.data,
-        id: componentModel.id,
-        label: componentModel.label,
-        control,
-      }),
+      filterPortal: this.mwComplexFilterPortalCreationService.createPortal(
+        componentModel.component,
+        MW_COMPLEX_FILTER_COMPONENT_DATA,
+        {
+          ...componentModel.data,
+          id: componentModel.id,
+          label: componentModel.label,
+          control,
+        },
+      ),
     };
 
     if (deleteButtonComponent !== undefined) {
       (result as MwComplexFilterExpandedPortalModel).deleteButtonPortal = this.mwComplexFilterPortalCreationService.createPortal(
         deleteButtonComponent,
+        MW_COMPLEX_FILTER_DELETE_BUTTON_DATA,
         { id: componentModel.id },
       );
     }
