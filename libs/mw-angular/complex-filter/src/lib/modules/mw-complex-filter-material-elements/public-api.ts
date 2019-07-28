@@ -1,5 +1,8 @@
 export * from './mw-complex-filter-material-elements.module';
 
+export * from './mw-complex-filter-material-reset-button/mw-complex-filter-material-reset-button.module';
+export * from './mw-complex-filter-material-reset-button/components/mw-complex-filter-material-reset-button/mw-complex-filter-material-reset-button.component';
+
 export * from './mw-complex-filter-material-delete-button/mw-complex-filter-material-delete-button.module';
 export * from './mw-complex-filter-material-delete-button/components/mw-complex-filter-material-delete-button/mw-complex-filter-material-delete-button.component';
 

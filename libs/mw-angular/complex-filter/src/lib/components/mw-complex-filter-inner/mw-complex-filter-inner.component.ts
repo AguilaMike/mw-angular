@@ -1,3 +1,4 @@
+import { ComponentPortal } from '@angular/cdk/portal';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import {
   MwComplexFilterExpandedPortalModel,
@@ -11,6 +12,7 @@ import {
   styleUrls: ['./mw-complex-filter-inner.component.scss'],
 })
 export class MwComplexFilterInnerComponent {
+  @Input() resetButtonPortal: ComponentPortal<any>;
   @Input() fixedPortalModels: MwComplexFilterPortalModel[] = [];
   @Input() shownPortalModels: MwComplexFilterExpandedPortalModel[] = [];
 
