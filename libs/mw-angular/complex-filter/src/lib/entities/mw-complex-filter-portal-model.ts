@@ -5,5 +5,8 @@ export interface MwComplexFilterPortalModel {
   id: string;
   control: BehaviorSubject<any>;
   filterPortal: ComponentPortal<any>;
-  deleteButtonPortal?: ComponentPortal<any>;
+}
+
+export interface MwComplexFilterExpandedPortalModel extends MwComplexFilterPortalModel {
+  deleteButtonPortal: ComponentPortal<any>;
 }

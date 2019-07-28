@@ -1,5 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { MwComplexFilterPortalModel } from '../../entities/mw-complex-filter-portal-model';
+import {
+  MwComplexFilterExpandedPortalModel,
+  MwComplexFilterPortalModel,
+} from '../../entities/mw-complex-filter-portal-model';
 
 @Component({
   selector: 'mw-complex-filter-inner',
@@ -9,7 +12,7 @@ import { MwComplexFilterPortalModel } from '../../entities/mw-complex-filter-por
 })
 export class MwComplexFilterInnerComponent {
   @Input() fixedPortalModels: MwComplexFilterPortalModel[] = [];
-  @Input() shownPortalModels: MwComplexFilterPortalModel[] = [];
+  @Input() shownPortalModels: MwComplexFilterExpandedPortalModel[] = [];
 
   trackByFn(_index: number, item: MwComplexFilterPortalModel): string | number {
     return item.id;
