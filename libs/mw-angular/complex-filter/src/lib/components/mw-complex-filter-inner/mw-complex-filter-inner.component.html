@@ -1,15 +1,13 @@
 <div class="mw-complex-filter-line">
   <div
     class="mw-complex-filter-line__item gutter"
-    *ngFor="let defaultPortalModel of defaultPortalModels; trackBy: trackByFn"
+    *ngFor="let fixedPortalModels of fixedPortalModels; trackBy: trackByFn"
   >
-    <ng-container [cdkPortalOutlet]="defaultPortalModel.portal"></ng-container>
+    <ng-container [cdkPortalOutlet]="fixedPortalModels.filterPortal"></ng-container>
   </div>
 
-  <div class="mw-complex-filter-line__item" *ngFor="let dynamicPortalModel of dynamicPortalModels; trackBy: trackByFn">
-    <ng-container [cdkPortalOutlet]="dynamicPortalModel.portal"></ng-container>
-    <div (click)="hideDynamicFilterEvent.emit(dynamicPortalModel.id)">
-      <ng-container [cdkPortalOutlet]="deleteButtonPortal"></ng-container>
-    </div>
+  <div class="mw-complex-filter-line__item" *ngFor="let shownPortalModel of shownPortalModels; trackBy: trackByFn">
+    <ng-container [cdkPortalOutlet]="shownPortalModel.filterPortal"></ng-container>
+    <ng-container [cdkPortalOutlet]="shownPortalModel.deleteButtonPortal"></ng-container>
   </div>
 </div>

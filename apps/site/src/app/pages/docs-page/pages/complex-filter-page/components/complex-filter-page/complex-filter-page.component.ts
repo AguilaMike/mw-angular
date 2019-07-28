@@ -15,7 +15,7 @@ import { timer } from 'rxjs';
 export class ComplexFilterPageComponent {
   complexFilterConfig: MwComplexFilterConfigModel = {
     deleteButtonComponent: MwComplexFilterMaterialDeleteButtonComponent,
-    defaultFilters: [
+    fixedFilters: [
       {
         id: 'first',
         label: 'One',
@@ -48,7 +48,7 @@ export class ComplexFilterPageComponent {
         },
       },
     ],
-    dynamicFilters: [
+    optionalFilters: [
       {
         id: 'dynamic-fourth',
         label: 'Four',

@@ -3,7 +3,7 @@ import { MwComplexFilterVirtualComponentModel } from './mw-complex-filter-virtua
 
 export interface MwComplexFilterConfigModel {
   deleteButtonComponent: any;
-  defaultFilters: MwComplexFilterComponentModel[];
-  dynamicFilters?: MwComplexFilterComponentModel[];
+  fixedFilters: MwComplexFilterComponentModel[];
+  optionalFilters: MwComplexFilterComponentModel[];
   virtualFilters?: MwComplexFilterVirtualComponentModel[];
 }
