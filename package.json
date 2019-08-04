@@ -55,6 +55,7 @@
   },
   "husky": {
     "hooks": {
+      "commit-msg": "node ./tools/husky/commit-msg.js",
       "pre-commit": "pretty-quick --staged",
       "pre-push": "./tools/pre-push.sh"
     }
@@ -96,7 +97,7 @@
     "@types/node": "~8.9.4",
     "angular2-template-loader": "^0.6.2",
     "codelyzer": "^5.0.0",
-    "husky": "^2.3.0",
+    "husky": "^3.0.2",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.1.0",
