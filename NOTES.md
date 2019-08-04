@@ -26,7 +26,7 @@
 - loader at top of the page
 - links in readme for core
 - fix pull requests builds
-
+- change test engines
 - app shell
 - default lang from browser
 - flicker theme
