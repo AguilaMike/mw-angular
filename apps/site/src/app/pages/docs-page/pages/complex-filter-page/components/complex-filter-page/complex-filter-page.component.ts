@@ -3,6 +3,7 @@ import {
   MwComplexFilterConfigModel,
   MwComplexFilterMaterialDeleteButtonComponent,
   MwComplexFilterMaterialElementTextComponent,
+  MwComplexFilterMaterialFiltersSelectorComponent,
   MwComplexFilterMaterialResetButtonComponent,
 } from '@mw-angular/complex-filter';
 import { timer } from 'rxjs';
@@ -15,8 +16,18 @@ import { timer } from 'rxjs';
 })
 export class ComplexFilterPageComponent {
   complexFilterConfig: MwComplexFilterConfigModel = {
-    resetButtonComponent: MwComplexFilterMaterialResetButtonComponent,
-    deleteButtonComponent: MwComplexFilterMaterialDeleteButtonComponent,
+    filtersSelector: {
+      component: MwComplexFilterMaterialFiltersSelectorComponent,
+      data: {
+        labelPlaceholder: 'Add more filters',
+      },
+    },
+    resetButton: {
+      component: MwComplexFilterMaterialResetButtonComponent,
+    },
+    deleteButton: {
+      component: MwComplexFilterMaterialDeleteButtonComponent,
+    },
     fixedFilters: [
       {
         id: 'first',

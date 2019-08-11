@@ -1,9 +1,13 @@
 import { ComponentPortal } from '@angular/cdk/portal';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
-import { BehaviorSubject, combineLatest, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, combineLatest, Observable, of, Subject } from 'rxjs';
 import { debounceTime, map, switchMap, takeUntil } from 'rxjs/operators';
 import { MwComplexFilterChangeEventModel } from './entities/mw-complex-filter-change-event-model';
-import { MwComplexFilterComponentModel } from './entities/mw-complex-filter-component-model';
+import {
+  MwComplexFilterCommonComponentModel,
+  MwComplexFilterComponentModel,
+  MwComplexFilterVirtualComponentModel,
+} from './entities/mw-complex-filter-component-model';
 import { MwComplexFilterConfigModel } from './entities/mw-complex-filter-config-model';
 import { MwComplexFilterEventModel, MwComplexFilterEventType } from './entities/mw-complex-filter-event-model';
 import { MwComplexFilterModifiedStreamModel } from './entities/mw-complex-filter-modified-stream-model';
@@ -11,11 +15,12 @@ import {
   MwComplexFilterExpandedPortalModel,
   MwComplexFilterPortalModel,
 } from './entities/mw-complex-filter-portal-model';
-import { MwComplexFilterVirtualComponentModel } from './entities/mw-complex-filter-virtual-component-model';
 import { MwComplexFilterEventBusService } from './services/mw-complex-filter-event-bus.service';
 import { MwComplexFilterPortalCreationService } from './services/mw-complex-filter-portal-creation.service';
 import { MW_COMPLEX_FILTER_COMPONENT_DATA } from './tokens/mw-complex-filter-component-data.token';
 import { MW_COMPLEX_FILTER_DELETE_BUTTON_DATA } from './tokens/mw-complex-filter-delete-button-data.token';
+import { MW_COMPLEX_FILTER_FILTERS_SELECTOR_DATA } from './tokens/mw-complex-filter-filters-selector-data.token';
+import { MW_COMPLEX_FILTER_RESET_BUTTON_DATA } from './tokens/mw-complex-filter-reset-button-data.token';
 
 @Component({
   selector: 'mw-complex-filter',
@@ -23,6 +28,7 @@ import { MW_COMPLEX_FILTER_DELETE_BUTTON_DATA } from './tokens/mw-complex-filter
   viewProviders: [MwComplexFilterPortalCreationService, MwComplexFilterEventBusService],
   template: `
     <mw-complex-filter-inner
+      [filtersSelectorPortal]="filtersSelectorPortal"
       [resetButtonPortal]="resetButtonPortal"
       [fixedPortalModels]="fixedPortalModelsSubject | async"
       [shownPortalModels]="shownPortalModelsSubject | async"
@@ -34,7 +40,22 @@ export class MwComplexFilterComponent implements OnDestroy {
   set config(config: MwComplexFilterConfigModel) {
     if (config) {
       this._config = config;
-      this.resetButtonPortal = this.mwComplexFilterPortalCreationService.createPortal(config.resetButtonComponent);
+
+      this.filtersSelectorPortal = this.mwComplexFilterPortalCreationService.createPortal(
+        config.filtersSelector.component,
+        MW_COMPLEX_FILTER_FILTERS_SELECTOR_DATA,
+        {
+          ...config.filtersSelector.data,
+          filters$: of([]),
+        },
+      );
+
+      this.resetButtonPortal = this.mwComplexFilterPortalCreationService.createPortal(
+        config.resetButton.component,
+        MW_COMPLEX_FILTER_RESET_BUTTON_DATA,
+        config.resetButton.data || {},
+      );
+
       this.resetFilters(config);
     }
   }
@@ -49,6 +70,7 @@ export class MwComplexFilterComponent implements OnDestroy {
 
   @Output() changeEvent = new EventEmitter<MwComplexFilterChangeEventModel>();
 
+  filtersSelectorPortal: ComponentPortal<any>;
   resetButtonPortal: ComponentPortal<any>;
   fixedPortalModelsSubject = new BehaviorSubject<MwComplexFilterPortalModel[]>([]);
   shownPortalModelsSubject = new BehaviorSubject<MwComplexFilterExpandedPortalModel[]>([]);
@@ -76,6 +98,7 @@ export class MwComplexFilterComponent implements OnDestroy {
   private initChangesEvent(): void {
     combineLatest(this.fixedPortalModelsSubject, this.shownPortalModelsSubject, this.virtualModelsSubject)
       .pipe(
+        debounceTime(this.debounceTime),
         switchMap(([fixedPortalModels, shownPortalModels, virtualModels]) => {
           const streams: Observable<MwComplexFilterModifiedStreamModel>[] = [];
 
@@ -87,7 +110,6 @@ export class MwComplexFilterComponent implements OnDestroy {
 
           return combineLatest(...streams);
         }),
-        debounceTime(this.debounceTime),
         takeUntil(this.destroySubject),
       )
       .subscribe((values: MwComplexFilterModifiedStreamModel[]) => {
@@ -135,7 +157,7 @@ export class MwComplexFilterComponent implements OnDestroy {
     this.hiddenPortalModelsSubject.next(
       config.optionalFilters.map(
         (componentModel: MwComplexFilterComponentModel) =>
-          this.buildPortalModel(componentModel, config.deleteButtonComponent) as MwComplexFilterExpandedPortalModel,
+          this.buildPortalModel(componentModel, config.deleteButton) as MwComplexFilterExpandedPortalModel,
       ),
     );
 
@@ -144,7 +166,7 @@ export class MwComplexFilterComponent implements OnDestroy {
 
   private buildPortalModel(
     componentModel: MwComplexFilterComponentModel,
-    deleteButtonComponent?: any,
+    deleteButton?: MwComplexFilterCommonComponentModel,
   ): MwComplexFilterPortalModel | MwComplexFilterExpandedPortalModel {
     const control = new BehaviorSubject(componentModel.defaultValue);
 
@@ -169,11 +191,14 @@ export class MwComplexFilterComponent implements OnDestroy {
       ),
     };
 
-    if (deleteButtonComponent !== undefined) {
+    if (deleteButton !== undefined) {
       (result as MwComplexFilterExpandedPortalModel).deleteButtonPortal = this.mwComplexFilterPortalCreationService.createPortal(
-        deleteButtonComponent,
+        deleteButton.component,
         MW_COMPLEX_FILTER_DELETE_BUTTON_DATA,
-        { id: componentModel.id },
+        {
+          ...deleteButton.data,
+          id: componentModel.id,
+        },
       );
     }
 

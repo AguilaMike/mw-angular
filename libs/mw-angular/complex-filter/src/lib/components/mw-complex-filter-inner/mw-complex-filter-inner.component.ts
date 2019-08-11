@@ -12,6 +12,7 @@ import {
   styleUrls: ['./mw-complex-filter-inner.component.scss'],
 })
 export class MwComplexFilterInnerComponent {
+  @Input() filtersSelectorPortal: ComponentPortal<any>;
   @Input() resetButtonPortal: ComponentPortal<any>;
   @Input() fixedPortalModels: MwComplexFilterPortalModel[] = [];
   @Input() shownPortalModels: MwComplexFilterExpandedPortalModel[] = [];

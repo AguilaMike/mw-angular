@@ -6,3 +6,6 @@
 - save filter state
 - check if all exposed entities in material are exported from lib
 - refresh observable
+- provide sql service
+- span id on select options
+- rename id to key

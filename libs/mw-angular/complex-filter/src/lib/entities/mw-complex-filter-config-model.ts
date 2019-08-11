@@ -1,9 +1,13 @@
-import { MwComplexFilterComponentModel } from './mw-complex-filter-component-model';
-import { MwComplexFilterVirtualComponentModel } from './mw-complex-filter-virtual-component-model';
+import {
+  MwComplexFilterCommonComponentModel,
+  MwComplexFilterComponentModel,
+  MwComplexFilterVirtualComponentModel,
+} from './mw-complex-filter-component-model';
 
 export interface MwComplexFilterConfigModel {
-  resetButtonComponent: any;
-  deleteButtonComponent: any;
+  filtersSelector: MwComplexFilterCommonComponentModel;
+  resetButton: MwComplexFilterCommonComponentModel;
+  deleteButton: MwComplexFilterCommonComponentModel;
   fixedFilters: MwComplexFilterComponentModel[];
   optionalFilters: MwComplexFilterComponentModel[];
   virtualFilters?: MwComplexFilterVirtualComponentModel[];
