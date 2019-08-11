@@ -1,4 +1,5 @@
 import { Observable } from 'rxjs';
+import { MwComplexFilterSelectorModel } from './mw-complex-filter-selector-model';
 
 export interface MwComplexFilterDataModel {
   [property: string]: any;
@@ -6,13 +7,7 @@ export interface MwComplexFilterDataModel {
 
 export interface MwComplexFilterFiltersSelectorDataModel {
   labelPlaceholder: string;
-  filters$: Observable<
-    Array<{
-      id: string;
-      label: string;
-      selected: boolean;
-    }>
-  >;
+  filters$: Observable<MwComplexFilterSelectorModel[]>;
 }
 
 export interface MwComplexFilterDeleteButtonDataModel {

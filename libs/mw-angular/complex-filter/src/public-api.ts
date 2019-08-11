@@ -6,6 +6,7 @@ export * from './lib/entities/mw-complex-filter-component-model';
 export * from './lib/entities/mw-complex-filter-config-model';
 export * from './lib/entities/mw-complex-filter-data-model';
 export * from './lib/entities/mw-complex-filter-event-model';
+export * from './lib/entities/mw-complex-filter-selector-model';
 
 export * from './lib/services/mw-complex-filter-event-bus.service';
 

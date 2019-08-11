@@ -1,5 +1,10 @@
 <mat-form-field>
-  <mat-select [placeholder]="data.labelPlaceholder" (selectionChange)="onChange()" multiple>
+  <mat-select
+    [placeholder]="data.labelPlaceholder"
+    [(value)]="value"
+    (selectionChange)="onChange($event.value)"
+    multiple
+  >
     <mat-option *ngFor="let filter of data.filters$ | async" [value]="filter.id">
       {{ filter.label }}
     </mat-option>

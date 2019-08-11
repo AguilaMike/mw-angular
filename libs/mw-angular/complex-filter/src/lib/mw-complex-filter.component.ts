@@ -1,6 +1,6 @@
 import { ComponentPortal } from '@angular/cdk/portal';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
-import { BehaviorSubject, combineLatest, Observable, of, Subject } from 'rxjs';
+import { BehaviorSubject, combineLatest, Observable, Subject } from 'rxjs';
 import { debounceTime, map, switchMap, takeUntil } from 'rxjs/operators';
 import { MwComplexFilterChangeEventModel } from './entities/mw-complex-filter-change-event-model';
 import {
@@ -15,6 +15,7 @@ import {
   MwComplexFilterExpandedPortalModel,
   MwComplexFilterPortalModel,
 } from './entities/mw-complex-filter-portal-model';
+import { MwComplexFilterSelectorModel } from './entities/mw-complex-filter-selector-model';
 import { MwComplexFilterEventBusService } from './services/mw-complex-filter-event-bus.service';
 import { MwComplexFilterPortalCreationService } from './services/mw-complex-filter-portal-creation.service';
 import { MW_COMPLEX_FILTER_COMPONENT_DATA } from './tokens/mw-complex-filter-component-data.token';
@@ -46,7 +47,7 @@ export class MwComplexFilterComponent implements OnDestroy {
         MW_COMPLEX_FILTER_FILTERS_SELECTOR_DATA,
         {
           ...config.filtersSelector.data,
-          filters$: of([]),
+          filters$: this.selectorFiltersSubject.asObservable(),
         },
       );
 
@@ -76,6 +77,7 @@ export class MwComplexFilterComponent implements OnDestroy {
   shownPortalModelsSubject = new BehaviorSubject<MwComplexFilterExpandedPortalModel[]>([]);
   private hiddenPortalModelsSubject = new BehaviorSubject<MwComplexFilterExpandedPortalModel[]>([]);
   private virtualModelsSubject = new BehaviorSubject<MwComplexFilterVirtualComponentModel[]>([]);
+  private selectorFiltersSubject = new BehaviorSubject<MwComplexFilterSelectorModel[]>([]);
   private destroySubject = new Subject<void>();
 
   constructor(
@@ -159,6 +161,14 @@ export class MwComplexFilterComponent implements OnDestroy {
         (componentModel: MwComplexFilterComponentModel) =>
           this.buildPortalModel(componentModel, config.deleteButton) as MwComplexFilterExpandedPortalModel,
       ),
+    );
+
+    this.selectorFiltersSubject.next(
+      config.optionalFilters.map((componentModel: MwComplexFilterComponentModel) => ({
+        id: componentModel.id,
+        label: componentModel.label,
+        selected: true,
+      })),
     );
 
     this.virtualModelsSubject.next(config.virtualFilters || []);
