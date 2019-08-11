@@ -62,7 +62,7 @@ export class MwRequestService {
         throw new Error('Host is undefined.');
       }
 
-      const protocol = host.lastIndexOf('localhost') === 0 ? 'http' : 'https';
+      const protocol = this.request.protocol;
       locationOrigin = `${protocol}://${host}`;
     } else if (this.mwPlatformService.isBrowser()) {
       locationOrigin = this.document.location.origin;
