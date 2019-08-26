@@ -2,12 +2,9 @@
   SET_STATUS_404, DON'T REMOVE THIS BLOCK
 </div>
 
-<div class="container-fluid my-5">
-  <div class="row">
-    <div class="col mat-h1 text-center e2e-error-code">{{ code }}</div>
-  </div>
-  <div class="row">
-    <div class="col mat-h3 text-center text-uppercase e2e-error-description">{{ description }}</div>
-  </div>
-  <ng-content></ng-content>
+<div class="my-5">
+  <div class="mat-h1 text-center text-uppercase e2e-error-code">{{ code }}</div>
+  <div class="mat-h3 text-center text-uppercase e2e-error-description">{{ description }}</div>
 </div>
+
+<ng-content></ng-content>

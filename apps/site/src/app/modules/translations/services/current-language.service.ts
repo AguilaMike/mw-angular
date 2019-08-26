@@ -5,18 +5,15 @@ import { Observable, ReplaySubject } from 'rxjs';
 import { distinctUntilChanged, filter, map } from 'rxjs/operators';
 import { Language } from '../../../../cross-platform/languages/entities/language';
 import { AcceptedLanguagesService } from '../../../../cross-platform/languages/services/accepted-languages.service';
-import { DefaultLanguageService } from '../../../../cross-platform/languages/services/default-language.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CurrentLanguageService {
   private currentLangIdSubject = new ReplaySubject<string>(1);
-  private defaultLanguageService: DefaultLanguageService;
   private acceptedLanguagesService: AcceptedLanguagesService;
 
   constructor(private router: Router, private mwHtmlService: MwHtmlService) {
-    this.defaultLanguageService = new DefaultLanguageService();
     this.acceptedLanguagesService = new AcceptedLanguagesService();
   }
 
@@ -55,7 +52,7 @@ export class CurrentLanguageService {
 
         if (!acceptedLangIds.includes(currentLangId)) {
           const trimUrl = url === '/' ? '' : url;
-          this.router.navigateByUrl(`/${this.defaultLanguageService.getDefaultLangId()}${trimUrl}`);
+          this.router.navigateByUrl(`/${this.acceptedLanguagesService.getDefaultLangId()}${trimUrl}`);
           return;
         }
 

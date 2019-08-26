@@ -8,7 +8,7 @@ import { CurrentLanguageService } from '../../modules/translations/services/curr
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <app-server-error code="404" [description]="pageTitle$ | async"> </app-server-error>
+    <app-server-error code="404" [description]="pageTitle$ | async"></app-server-error>
   `,
 })
 export class NotFoundPageContainerComponent implements OnInit, OnDestroy {

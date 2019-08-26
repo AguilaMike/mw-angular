@@ -14,6 +14,10 @@ export class AcceptedLanguagesService {
     ];
   }
 
+  getDefaultLangId(): string {
+    return this.getAcceptedLangs()[0].id;
+  }
+
   getAcceptedLangIds(): string[] {
     return this.getAcceptedLangs().map((lang: Language) => lang.id);
   }
