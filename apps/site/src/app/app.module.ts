@@ -7,7 +7,6 @@ import { TransferHttpCacheModule } from '@nguniversal/common';
 import { environment } from '../environments/environment';
 import { AppContainerComponent } from './app-container.component';
 import { AppRoutingModule } from './app-routing.module';
-import { BaseLayoutModule } from './modules/base-layout/base-layout.module';
 import { TranslationsModule } from './modules/translations/translations.module';
 
 @NgModule({
@@ -19,7 +18,6 @@ import { TranslationsModule } from './modules/translations/translations.module';
     TranslationsModule,
     MwCoreModule.forRoot(environment),
     AppRoutingModule,
-    BaseLayoutModule,
   ],
   declarations: [AppContainerComponent],
   bootstrap: [AppContainerComponent],

@@ -8,9 +8,7 @@ import { CurrentLanguageService } from './modules/translations/services/current-
   selector: 'app-container',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <app-base-layout-container>
-      <router-outlet></router-outlet>
-    </app-base-layout-container>
+    <router-outlet></router-outlet>
   `,
 })
 export class AppContainerComponent {
