@@ -3,7 +3,7 @@
 lib="$1"
 
 if [[ "$lib" != "" ]] ; then
-    rimraf dist/"$lib"
+    ./node_modules/.bin/rimraf dist/"$lib"
     npx ng build @"$lib"
 
     scssConfig=libs/"$lib"/scss-bundle.config.json

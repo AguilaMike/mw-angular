@@ -1,18 +1,26 @@
-FROM node:12.10-alpine
+FROM node:latest as builder
 
 ARG app
 ARG env
 
-ENV APP=''
+WORKDIR /app
 
-WORKDIR /dock
+COPY package.json package-lock.json ./
 
-COPY package.json .
-COPY package-lock.json .
 RUN npm install
 
-COPY . ./
+COPY . .
 RUN ./tools/build-app.sh "$app" "$env"
 
+
+
+FROM node:alpine
+
+ENV APP=''
+
+WORKDIR /app
+
+COPY --from=builder /app/dist/$APP ./dist/$APP
+
 EXPOSE 5200
-CMD export PORT=5200 && node dist/$APP/server.js
+CMD export PORT=5200 && node ./dist/$APP/server.js

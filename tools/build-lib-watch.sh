@@ -3,7 +3,7 @@
 lib="$1"
 
 if [[ "$lib" != "" ]] ; then
-    rimraf dist/"$lib"
+    ./node_modules/.bin/rimraf dist/"$lib"
     npx ng build @"$lib" --watch
 else
     echo "param errors"

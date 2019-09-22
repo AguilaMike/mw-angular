@@ -4,7 +4,7 @@ app="$1"
 env="$2"
 
 if [[ "$app" != "" && "$env" != "" ]] ; then
-    rimraf dist/"$app"
+    ./node_modules/.bin/rimraf dist/"$app"
     ./tools/build-all-libs.sh
     npx ng build "$app" --delete-output-path --configuration "$env" --stats-json
     webpack-bundle-analyzer dist/"$app"/browser/stats-es2015.json
