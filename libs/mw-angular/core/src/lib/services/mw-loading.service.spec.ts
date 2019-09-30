@@ -3,7 +3,7 @@ import { MwLoadingService } from './mw-loading.service';
 
 describe('MwLoadingService', () => {
   let service: MwLoadingService;
-  const debounceTime = 100;
+  const debounceTime = 200;
 
   beforeEach(() => {
     service = new MwLoadingService();
@@ -37,6 +37,44 @@ describe('MwLoadingService', () => {
       const onNextEventSpy = jasmine.createSpy('onNextEventSpy');
 
       service.getIsLoading('custom-tag').subscribe(onNextEventSpy);
+      tick(debounceTime);
+
+      expect(onNextEventSpy.calls.allArgs()).toEqual([[false]]);
+    }));
+  });
+
+  describe('getIsLoadingGroup', () => {
+    it('should debounce', fakeAsync(() => {
+      const onNextEventSpy = jasmine.createSpy('onNextEventSpy');
+      const tagOne = 'tagOne';
+      const tagTwo = 'tagTwo';
+
+      service.getIsLoadingGroup([tagOne, tagTwo]).subscribe(onNextEventSpy);
+      service.start(tagOne);
+      service.start(tagTwo);
+      service.stop(tagOne);
+      service.stop(tagTwo);
+      service.start(tagOne);
+      tick(debounceTime);
+      service.stop(tagOne);
+      tick(debounceTime);
+
+      expect(onNextEventSpy.calls.allArgs()).toEqual([[true], [false]]);
+    }));
+
+    it('should return boolean observable without tags', fakeAsync(() => {
+      const onNextEventSpy = jasmine.createSpy('onNextEventSpy');
+
+      service.getIsLoadingGroup().subscribe(onNextEventSpy);
+      tick(debounceTime);
+
+      expect(onNextEventSpy.calls.allArgs()).toEqual([[false]]);
+    }));
+
+    it('should return boolean observable with custom tags', fakeAsync(() => {
+      const onNextEventSpy = jasmine.createSpy('onNextEventSpy');
+
+      service.getIsLoadingGroup(['custom-tag']).subscribe(onNextEventSpy);
       tick(debounceTime);
 
       expect(onNextEventSpy.calls.allArgs()).toEqual([[false]]);
