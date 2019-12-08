@@ -49,7 +49,7 @@
     "build-all-libs": "./tools/build-all-libs.sh",
     "check-all-libs": "./tools/check-all-libs.sh",
     "lint-all-scss": "stylelint \"apps/**/*.scss\" && stylelint \"libs/**/*.scss\"",
-    "lint-all-scss-fix": "npm run lint-scss -- --fix",
+    "lint-all-scss-fix": "npm run lint-all-scss -- --fix",
     "prettier": "prettier --write \"{apps,libs}/**/*.ts\"",
     "prettier:check": "prettier --check \"{apps,libs}/**/*.ts\""
   },

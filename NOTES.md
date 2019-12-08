@@ -15,6 +15,9 @@
 
 - for serving on device use "npm run start-no-libs-for-devices:site" and open
   from your ip, i.e. https://192.168.2.70:4200
+  
+  Get ip on Mac
+  ipconfig getifaddr en0
 
 ## TODO
 
