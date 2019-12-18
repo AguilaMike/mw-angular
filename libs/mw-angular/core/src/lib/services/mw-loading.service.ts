@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, combineLatest, Observable, Subscriber } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, finalize, map, switchMapTo, take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -27,6 +27,14 @@ export class MwLoadingService {
       map((loadings: boolean[]) => loadings.some((loader: boolean) => loader)),
       distinctUntilChanged(),
       debounceTime(this.debounceTime),
+    );
+  }
+
+  loadingWrapper<T>(observable$: Observable<T>, tag: string = this.generalTag): Observable<T> {
+    return this.startObservable(tag).pipe(
+      switchMapTo(observable$),
+      take(1),
+      finalize(() => this.stop(tag)),
     );
   }
 
