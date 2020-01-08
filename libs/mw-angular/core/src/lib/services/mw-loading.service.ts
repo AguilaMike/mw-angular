@@ -7,10 +7,9 @@ import { debounceTime, distinctUntilChanged, finalize, map, switchMapTo, take } 
 })
 export class MwLoadingService {
   private isLoadingSubjectsPool: { [tag: string]: BehaviorSubject<number> } = {};
-  private readonly generalTag = 'general';
   private readonly debounceTime = 100;
 
-  getIsLoading(tag = this.generalTag): Observable<boolean> {
+  getIsLoading(tag: string): Observable<boolean> {
     this.checkAndInitIsLoadingSubject(tag);
 
     return this.isLoadingSubjectsPool[tag].asObservable().pipe(
@@ -20,7 +19,7 @@ export class MwLoadingService {
     );
   }
 
-  getIsLoadingGroup(tags = [this.generalTag]): Observable<boolean> {
+  getIsLoadingGroup(tags: string[]): Observable<boolean> {
     const tagsIsLoading: Observable<boolean>[] = tags.map((tag: string) => this.getIsLoading(tag));
 
     return combineLatest(tagsIsLoading).pipe(
@@ -30,15 +29,19 @@ export class MwLoadingService {
     );
   }
 
-  loadingWrapper<T>(observable$: Observable<T>, tag: string = this.generalTag): Observable<T> {
+  loadingWrapper<T>(observable$: Observable<T>, tag: string): Observable<T> {
     return this.startObservable(tag).pipe(
       switchMapTo(observable$),
       take(1),
-      finalize(() => this.stop(tag)),
+      finalize(
+        (): void => {
+          this.stop(tag);
+        },
+      ),
     );
   }
 
-  startObservable(tag = this.generalTag): Observable<void> {
+  startObservable(tag: string): Observable<void> {
     return new Observable((subscriber: Subscriber<void>) => {
       this.start(tag);
 
@@ -49,13 +52,13 @@ export class MwLoadingService {
     });
   }
 
-  start(tag = this.generalTag): void {
+  start(tag: string): void {
     this.checkAndInitIsLoadingSubject(tag);
 
     this.isLoadingSubjectsPool[tag].next(this.isLoadingSubjectsPool[tag].value + 1);
   }
 
-  stop(tag = this.generalTag): void {
+  stop(tag: string): void {
     if (this.isLoadingSubjectsPool[tag] === undefined) {
       throw new Error(`Loading subject was not created for tag: ${tag}.`);
     }
@@ -65,7 +68,7 @@ export class MwLoadingService {
     }
   }
 
-  destroy(tag = this.generalTag): void {
+  destroy(tag: string): void {
     if (this.isLoadingSubjectsPool[tag] !== undefined) {
       this.isLoadingSubjectsPool[tag].next(0);
       this.isLoadingSubjectsPool[tag].complete();
